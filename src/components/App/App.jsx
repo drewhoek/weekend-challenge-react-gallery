@@ -1,21 +1,39 @@
-import React from 'react';
+import {useState, useEffect} from 'react';
 import './App.css';
+import GalleryList from '../GalleryList/GalleryList';
+import axios from 'axios';
+
 
 function App() {
+  const [galleryList, setGalleryList] = useState([]);
+
+  useEffect(() => {
+    console.log("I am running when my component renders for the first time");
+
+    fetchPics();
+  }, []);
+
+  function fetchPics() {
+    console.log('getting pictures from server');
+    axios.get('/gallery') 
+    .then((response) => {
+      console.log("successfully retrieved data");
+      setGalleryList(response.data);
+    })
+    .catch((err) => {
+      alert("Error in retrieving data");
+      console.log("error in retrieving data", err);
+    });
+  }
     return (
       <div className="App">
         <header className="App-header">
           <h1 className="App-title">Gallery of My Life</h1>
         </header>
-        <p>Gallery goes here</p>
-        <div id="gallery-container">
-        <img src="images/goat_small.jpg"/>
-        <img src="images/Bemidji.jpeg"/>
-        <img src="images/Colorado.jpeg"/>
-        <img src="images/Cooking-Demonstration.jpeg"/>
-        <img src="images/Family-Christmas.jpeg"/>
-        <img src="images/Moby-Christmas.jpeg"/>
-        </div>
+      <GalleryList 
+      galleryList={galleryList}
+      fetchPics={fetchPics}
+      />
       </div>
     );
 }
