@@ -4,7 +4,7 @@ function GalleryItem({ pic, fetchPics }) {
 
     function likePicture() {
         console.log('liking picture at id:', pic.id);
-        axios.put(`/like/${pic.id}`)
+        axios.put(`/gallery/like/${pic.id}`)
         .then((response) => {
           console.log("liked picture successfully");
           fetchPics();
