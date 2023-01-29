@@ -26,7 +26,7 @@ function toggleMode() {
 }
 
 // function to decide what is rendered to the DOM based on 
-const whichDisplay = () => {
+const whichDisplay = (displayMode) => {
   const picDisplay = <img src= {pic.path}/>
   const descriptionDisplay = <p>{pic.description}</p>
   if (displayMode) {
@@ -43,7 +43,7 @@ const whichDisplay = () => {
                   {whichDisplay(displayMode)}
                 </div>
                 <button className="like-button" onClick={likePicture}>Like this Picture!</button>
-                <p>{pic.likes} people have liked this picture</p>
+                <p><span class="number-of-likes">{pic.likes}</span> people have liked this picture</p>
                
             </div>
         </>

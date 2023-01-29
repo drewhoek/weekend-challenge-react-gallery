@@ -4,7 +4,6 @@ function GalleryList({ galleryList, fetchPics }) {
 
     return(
         <>
-        <p>Here is my gallery!</p>
         <div id="gallery-container">
         {galleryList.map((pic) => (
             <GalleryItem 
