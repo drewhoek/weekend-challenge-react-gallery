@@ -3,37 +3,39 @@ import { useState } from "react";
 
 function GalleryItem({ pic, fetchPics }) {
 
-  const [displayMode, setDisplayMode] = useState(false)
+  const [displayMode, setDisplayMode] = useState(false);
 
-    function likePicture() {
-        console.log('liking picture at id:', pic.id);
-        axios.put(`/gallery/like/${pic.id}`)
-        .then((response) => {
-          console.log("liked picture successfully");
-          fetchPics();
-        })
-        .catch((err) => {
-          alert("Error in liking picture");
-          console.log("error in liking picture", err);
-        });
-    }
+// Function with PUT request to like a picture
+function likePicture() {
+  console.log('liking picture at id:', pic.id);
+  axios.put(`/gallery/like/${pic.id}`)
+  .then((response) => {
+    console.log("liked picture successfully");
+    fetchPics();
+  })
+  .catch((err) => {
+    alert("Error in liking picture");
+    console.log("error in liking picture", err);
+  });
+}
 
+// function that will toggle our display mode
 function toggleMode() {
   console.log('switching mode of list item');
   setDisplayMode(!displayMode);
 }
 
+// function to decide what is rendered to the DOM based on 
 const whichDisplay = () => {
   const picDisplay = <img src= {pic.path}/>
   const descriptionDisplay = <p>{pic.description}</p>
   if (displayMode) {
-    return descriptionDisplay
+    return descriptionDisplay;
   } else {
-    return picDisplay
+    return picDisplay;
   }
 }
 
-console.log(whichDisplay());
     return (
         <>
              <div>
@@ -42,6 +44,7 @@ console.log(whichDisplay());
                 </div>
                 <button className="like-button" onClick={likePicture}>Like this Picture!</button>
                 <p>{pic.likes} people have liked this picture</p>
+               
             </div>
         </>
     );

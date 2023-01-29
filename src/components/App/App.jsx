@@ -7,12 +7,14 @@ import axios from 'axios';
 function App() {
   const [galleryList, setGalleryList] = useState([]);
 
+  // On DOM load ren fetchPics
   useEffect(() => {
     console.log("I am running when my component renders for the first time");
 
     fetchPics();
   }, []);
 
+  // function with GET request to retrieve pics from server
   function fetchPics() {
     console.log('getting pictures from server');
     axios.get('/gallery') 
