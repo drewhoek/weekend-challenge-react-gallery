@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 
-function GalleryItem({ pic, fetchPics }) {
+function GalleryItem({ pic, fetchPics, galleryList }) {
 
   const [displayMode, setDisplayMode] = useState(false);
 
@@ -25,6 +25,13 @@ function toggleMode() {
   setDisplayMode(!displayMode);
 }
 
+function deletePicture() {
+  console.log('deleting picture at id', pic.id);
+  galleryList.splice(pic, 1);
+  fetchPics();
+  // ^^^ I' m a little confused why this doesn't work ^^^ 
+}
+
 // function to decide what is rendered to the DOM based on 
 const whichDisplay = (displayMode) => {
   const picDisplay = <img src= {pic.path}/>
@@ -44,6 +51,7 @@ const whichDisplay = (displayMode) => {
                 </div>
                 <button className="like-button" onClick={likePicture}>Like this Picture!</button>
                 <p><span class="number-of-likes">{pic.likes}</span> people have liked this picture</p>
+                <button class="delete-button" onClick={deletePicture}>Delete Image</button>
             </div>
         </>
     );
