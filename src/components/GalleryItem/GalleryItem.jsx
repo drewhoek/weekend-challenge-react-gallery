@@ -44,7 +44,6 @@ const whichDisplay = (displayMode) => {
                 </div>
                 <button className="like-button" onClick={likePicture}>Like this Picture!</button>
                 <p><span class="number-of-likes">{pic.likes}</span> people have liked this picture</p>
-               
             </div>
         </>
     );
