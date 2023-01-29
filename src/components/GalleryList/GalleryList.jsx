@@ -10,6 +10,7 @@ function GalleryList({ galleryList, fetchPics }) {
             key={pic.id}
             pic={pic}
             fetchPics={fetchPics}
+            galleryList={galleryList}
             />
         ))}
         </div>
